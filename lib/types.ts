@@ -3,14 +3,17 @@ export type Point3 = { x: number; z: number }
 export interface Office {
   id: string
   name: string
+  shortName?: string
   room?: string
+  guides?: Guide[]
+  notes?: Note[]
 }
 
 export interface Guide {
   id: string
   title: string
   content: string
-  updatedAt: number
+  updatedAt?: number
 }
 
 export type NoteColor = "yellow" | "blue" | "pink" | "green"
@@ -19,12 +22,7 @@ export interface Note {
   id: string
   content: string
   color: NoteColor
-  updatedAt: number
-}
-
-export interface OfficeContent {
-  guides: Guide[]
-  notes: Note[]
+  updatedAt?: number
 }
 
 export interface Building {
@@ -36,9 +34,9 @@ export interface Building {
   foot: { x: number; z: number; width: number; depth: number }
   height: number
   floors: number
+  mapRows?: number
   wallColor?: string
   roofColor?: string
-  seedOffices: Office[]
 }
 
 export interface Gate {
@@ -71,8 +69,6 @@ export interface Stats {
 }
 
 export interface CampusStoreData {
-  offices: Record<string, Office[]>
-  content: Record<string, OfficeContent>
   stats: Stats
 }
 

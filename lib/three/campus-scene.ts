@@ -9,7 +9,6 @@ import {
   GREENS,
   GUARD_HOUSES,
   PARKING_LOT,
-  PATH_PATHS,
   TREES,
   WALL,
   WORLD_DEPTH,
@@ -29,8 +28,6 @@ const GROUND = {
   grass: 0xa7d3aa,
   green: 0x8ed095,
   road: 0xd4d2cf,
-  dash: 0x9aa09e,
-  path: 0xe1dfdc,
   wall: 0xc2c4c6,
   wallPost: 0x9aa0a5,
   trunk: 0x8a5a2b,
@@ -106,36 +103,6 @@ function addGreens(scene: THREE.Scene) {
     mesh.position.set(g.x + g.width / 2, 0.04, -(g.z + g.depth / 2))
     mesh.receiveShadow = true
     scene.add(mesh)
-  })
-}
-
-function addSegment(
-  scene: THREE.Scene,
-  a: Point3,
-  b: Point3,
-  thickness: number,
-  color: number,
-  height: number,
-  y = 0
-) {
-  const alongX = Math.abs(b.x - a.x) >= Math.abs(b.z - a.z)
-  const len = Math.max(Math.abs(b.x - a.x), Math.abs(b.z - a.z)) || 1
-  const mesh = lambertBox(
-    alongX ? len : thickness,
-    height,
-    alongX ? thickness : len,
-    color
-  )
-  mesh.position.set((a.x + b.x) / 2, y + height / 2, -(a.z + b.z) / 2)
-  mesh.receiveShadow = true
-  scene.add(mesh)
-}
-
-function addRoadNetwork(scene: THREE.Scene) {
-  PATH_PATHS.forEach((path) => {
-    for (let i = 0; i < path.length - 1; i++) {
-      addSegment(scene, path[i], path[i + 1], 4, GROUND.path, 0.1)
-    }
   })
 }
 
@@ -560,7 +527,6 @@ export function buildCampusScene(): CampusScene3D {
 
   addGround(scene)
   addGreens(scene)
-  addRoadNetwork(scene)
   addPerimeterWalls(scene)
   addTrees(scene)
   addParkingLot(scene)
