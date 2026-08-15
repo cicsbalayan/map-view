@@ -34,20 +34,20 @@ export function CampusMapView() {
 
   return (
     <div className="flex h-dvh flex-col">
-      <header className="flex items-center gap-3 border-b px-4 py-2.5">
+      <header className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b px-3 py-2 sm:px-4 sm:py-2.5">
         <div className="flex min-w-0 shrink-0 items-center gap-2.5">
           <div className="grid size-9 shrink-0 place-items-center rounded-lg bg-primary text-primary-foreground">
             <MapPin className="size-5" />
           </div>
           <div className="min-w-0">
             <h1 className="text-sm font-semibold">Campus Map</h1>
-            <p className="truncate text-xs text-muted-foreground">
+            <p className="hidden truncate text-xs text-muted-foreground sm:block">
               Interactive 3D building and office guide
             </p>
           </div>
         </div>
 
-        <div className="mx-auto w-full max-w-md">
+        <div className="min-w-0 max-sm:order-last max-sm:w-full sm:mx-auto sm:w-full sm:max-w-md">
           <SearchBar
             store={store}
             onSelect={(sel) => {

@@ -1,7 +1,6 @@
 import type { Office } from "@/lib/types"
 
 export const STORAGE_OFFICES: Office[] = [
-  { id: "storage-office", name: "Storage Office", shortName: "Office", room: "1F" },
   {
     id: "storage-main",
     name: "Storage Room",

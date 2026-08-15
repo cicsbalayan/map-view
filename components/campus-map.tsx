@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Locate, Minus, Plus } from "lucide-react"
+import { ChevronDown, Locate, Minus, Plus } from "lucide-react"
 import * as THREE from "three"
 import { OrbitControls } from "three/addons/controls/OrbitControls.js"
 import { CSS2DRenderer } from "three/addons/renderers/CSS2DRenderer.js"
@@ -68,6 +68,7 @@ export const CampusMap = React.forwardRef<CampusMapHandle, CampusMapProps>(
     } | null>(null)
 
     const [zoom, setZoom] = React.useState(100)
+    const [legendOpen, setLegendOpen] = React.useState(true)
 
     const flyToTarget = React.useCallback(
       (target: THREE.Vector3, distance?: number) => {
@@ -122,7 +123,9 @@ export const CampusMap = React.forwardRef<CampusMapHandle, CampusMapProps>(
       const isSelected = (kind: string, id: string) =>
         selection?.kind === kind && selection.id === id
       campus.buildingMeshes.forEach((mesh, id) => {
-        const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material]
+        const mats = Array.isArray(mesh.material)
+          ? mesh.material
+          : [mesh.material]
         mats.forEach((mat) => {
           ;(mat as THREE.MeshLambertMaterial).emissiveIntensity = isSelected(
             "building",
@@ -133,9 +136,14 @@ export const CampusMap = React.forwardRef<CampusMapHandle, CampusMapProps>(
         })
       })
       campus.gateMeshes.forEach((mesh, id) => {
-        const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material]
+        const mats = Array.isArray(mesh.material)
+          ? mesh.material
+          : [mesh.material]
         mats.forEach((mat) => {
-          ;(mat as THREE.MeshLambertMaterial).emissiveIntensity = isSelected("gate", id)
+          ;(mat as THREE.MeshLambertMaterial).emissiveIntensity = isSelected(
+            "gate",
+            id
+          )
             ? HIGHLIGHT_INTENSITY
             : NORMAL_INTENSITY
         })
@@ -253,7 +261,12 @@ export const CampusMap = React.forwardRef<CampusMapHandle, CampusMapProps>(
       const ndc = new THREE.Vector2()
       let downAt = { x: 0, y: 0, time: 0, active: false }
       const onPointerDown = (e: PointerEvent) => {
-        downAt = { x: e.clientX, y: e.clientY, time: performance.now(), active: true }
+        downAt = {
+          x: e.clientX,
+          y: e.clientY,
+          time: performance.now(),
+          active: true,
+        }
       }
       const onPointerUp = (e: PointerEvent) => {
         if (!downAt.active) return
@@ -279,7 +292,8 @@ export const CampusMap = React.forwardRef<CampusMapHandle, CampusMapProps>(
           data.kind === "building"
             ? BUILDINGS.find((b) => b.id === data.id)
             : null
-        const gate = data.kind === "gate" ? GATES.find((g) => g.id === data.id) : null
+        const gate =
+          data.kind === "gate" ? GATES.find((g) => g.id === data.id) : null
         if (building) {
           flyToBuilding(building)
           onSelect({ kind: "building", id: building.id })
@@ -302,9 +316,7 @@ export const CampusMap = React.forwardRef<CampusMapHandle, CampusMapProps>(
           const mesh = obj as THREE.Mesh
           if (mesh.geometry) mesh.geometry.dispose()
           const material = mesh.material as
-            | THREE.Material
-            | THREE.Material[]
-            | undefined
+            THREE.Material | THREE.Material[] | undefined
           if (Array.isArray(material)) {
             material.forEach((m) => m.dispose())
           } else if (material) {
@@ -328,14 +340,20 @@ export const CampusMap = React.forwardRef<CampusMapHandle, CampusMapProps>(
       const camera = cameraRef.current
       const controls = controlsRef.current
       if (!camera || !controls) return
-      flyToTarget(controls.target, camera.position.distanceTo(controls.target) / 1.45)
+      flyToTarget(
+        controls.target,
+        camera.position.distanceTo(controls.target) / 1.45
+      )
     }, [flyToTarget])
 
     const zoomOut = React.useCallback(() => {
       const camera = cameraRef.current
       const controls = controlsRef.current
       if (!camera || !controls) return
-      flyToTarget(controls.target, camera.position.distanceTo(controls.target) * 1.45)
+      flyToTarget(
+        controls.target,
+        camera.position.distanceTo(controls.target) * 1.45
+      )
     }, [flyToTarget])
 
     const selectedId = selected?.id ?? null
@@ -344,91 +362,118 @@ export const CampusMap = React.forwardRef<CampusMapHandle, CampusMapProps>(
       <div className="relative h-full w-full touch-none overflow-hidden select-none">
         <div ref={containerRef} className="absolute inset-0" />
         <div className="pointer-events-none absolute top-4 left-1/2 z-10 -translate-x-1/2">
-          <p className="rounded-full border bg-background/90 px-3 py-1 text-xs text-muted-foreground shadow-sm backdrop-blur">
+          <p className="hidden rounded-full border bg-background/90 px-3 py-1 text-xs text-muted-foreground shadow-sm backdrop-blur sm:block">
             Drag to rotate · Scroll or pinch to zoom · Right-drag to pan
+          </p>
+          <p className="rounded-full border bg-background/90 px-3 py-1 text-xs text-muted-foreground shadow-sm backdrop-blur sm:hidden">
+            Drag · Pinch to zoom · Right-drag to pan
           </p>
         </div>
 
         <CompassRose />
 
-        <div className="absolute bottom-4 left-4 z-10 w-56 rounded-xl border bg-background/90 p-3 shadow-md backdrop-blur">
-          <p className="mb-2 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+        <div className="absolute bottom-4 left-4 z-10 w-56 overflow-hidden rounded-xl border bg-background/90 shadow-md backdrop-blur">
+          <button
+            type="button"
+            onClick={() => setLegendOpen((open) => !open)}
+            aria-expanded={legendOpen}
+            className="flex w-full items-center justify-between gap-2 px-3 py-2 text-xs font-semibold tracking-wide text-muted-foreground uppercase hover:bg-muted"
+          >
             Legend
-          </p>
-          <ul className="space-y-0.5">
-            {BUILDINGS.map((building) => (
-              <li key={building.id}>
+            <ChevronDown
+              className={cn(
+                "size-3.5 transition-transform",
+                !legendOpen && "-rotate-90"
+              )}
+            />
+          </button>
+          {legendOpen && (
+            <ul className="space-y-0.5 border-t p-2">
+              {BUILDINGS.map((building) => (
+                <li key={building.id}>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      focusAndSelect({ kind: "building", id: building.id })
+                    }
+                    className={cn(
+                      "flex w-full items-center gap-2 rounded-md px-1.5 py-1 text-left text-sm hover:bg-muted",
+                      selectedId === building.id && "bg-muted"
+                    )}
+                  >
+                    <span
+                      className="size-3 shrink-0 rounded-sm border border-black/10"
+                      style={{ backgroundColor: building.color }}
+                    />
+                    <span className="truncate">
+                      {building.shortName}{" "}
+                      <span className="text-muted-foreground">·</span>{" "}
+                      {building.name}
+                    </span>
+                  </button>
+                </li>
+              ))}
+              <li>
                 <button
                   type="button"
-                  onClick={() =>
-                    focusAndSelect({ kind: "building", id: building.id })
-                  }
-                  className={cn(
-                    "flex w-full items-center gap-2 rounded-md px-1.5 py-1 text-left text-sm hover:bg-muted",
-                    selectedId === building.id && "bg-muted"
-                  )}
+                  onClick={() => focusAndSelect({ kind: "gate", id: "gate-1" })}
+                  className="flex w-full items-center gap-2 rounded-md px-1.5 py-1 text-left text-sm hover:bg-muted"
                 >
                   <span
                     className="size-3 shrink-0 rounded-sm border border-black/10"
-                    style={{ backgroundColor: building.color }}
+                    style={{ backgroundColor: GATE_COLOR }}
                   />
-                  <span className="truncate">
-                    {building.shortName} <span className="text-muted-foreground">·</span>{" "}
-                    {building.name}
-                  </span>
+                  <span>Entrance gates</span>
                 </button>
               </li>
-            ))}
-            <li>
-              <button
-                type="button"
-                onClick={() => focusAndSelect({ kind: "gate", id: "gate-1" })}
-                className="flex w-full items-center gap-2 rounded-md px-1.5 py-1 text-left text-sm hover:bg-muted"
-              >
-                <span
-                  className="size-3 shrink-0 rounded-sm border border-black/10"
-                  style={{ backgroundColor: GATE_COLOR }}
-                />
-                <span>Entrance gates</span>
-              </button>
-            </li>
-            <li>
-              <button
-                type="button"
-                onClick={() => flyTo(parkingLotCenter(), 420)}
-                className="flex w-full items-center gap-2 rounded-md px-1.5 py-1 text-left text-sm hover:bg-muted"
-              >
-                <span
-                  className="size-3 shrink-0 rounded-sm border border-black/10"
-                  style={{ backgroundColor: "#5b626a" }}
-                />
-                <span>Parking lot</span>
-              </button>
-            </li>
-            <li>
-              <button
-                type="button"
-                onClick={() => flyTo(benchAreaCenter(), 380)}
-                className="flex w-full items-center gap-2 rounded-md px-1.5 py-1 text-left text-sm hover:bg-muted"
-              >
-                <span
-                  className="size-3 shrink-0 rounded-sm border border-black/10"
-                  style={{ backgroundColor: "#d43b3b" }}
-                />
-                <span>Bench area</span>
-              </button>
-            </li>
-          </ul>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => flyTo(parkingLotCenter(), 420)}
+                  className="flex w-full items-center gap-2 rounded-md px-1.5 py-1 text-left text-sm hover:bg-muted"
+                >
+                  <span
+                    className="size-3 shrink-0 rounded-sm border border-black/10"
+                    style={{ backgroundColor: "#5b626a" }}
+                  />
+                  <span>Parking lot</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => flyTo(benchAreaCenter(), 380)}
+                  className="flex w-full items-center gap-2 rounded-md px-1.5 py-1 text-left text-sm hover:bg-muted"
+                >
+                  <span
+                    className="size-3 shrink-0 rounded-sm border border-black/10"
+                    style={{ backgroundColor: "#d43b3b" }}
+                  />
+                  <span>Bench area</span>
+                </button>
+              </li>
+            </ul>
+          )}
         </div>
 
         <div className="absolute right-4 bottom-4 z-10 flex flex-col items-center gap-1 rounded-xl border bg-background/90 p-1.5 shadow-md backdrop-blur">
-          <Button size="icon-sm" variant="outline" aria-label="Zoom in" onClick={zoomIn}>
+          <Button
+            size="icon-sm"
+            variant="outline"
+            aria-label="Zoom in"
+            onClick={zoomIn}
+          >
             <Plus />
           </Button>
           <div className="px-1 text-center text-[11px] text-muted-foreground tabular-nums">
             {zoom}%
           </div>
-          <Button size="icon-sm" variant="outline" aria-label="Zoom out" onClick={zoomOut}>
+          <Button
+            size="icon-sm"
+            variant="outline"
+            aria-label="Zoom out"
+            onClick={zoomOut}
+          >
             <Minus />
           </Button>
           <div className="my-0.5 h-px w-6 bg-border" />
@@ -450,10 +495,27 @@ function CompassRose() {
   return (
     <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 rounded-xl border bg-background/90 p-1.5 text-xs text-muted-foreground shadow-sm backdrop-blur">
       <svg viewBox="0 0 40 40" className="size-9" aria-label="North indicator">
-        <circle cx={20} cy={20} r={17} className="fill-background stroke-border" strokeWidth={2} />
+        <circle
+          cx={20}
+          cy={20}
+          r={17}
+          className="fill-background stroke-border"
+          strokeWidth={2}
+        />
         <polygon points="20,5 23.5,20 16.5,20" fill="#f43f5e" />
-        <polygon points="20,35 16.5,20 23.5,20" fill="currentColor" opacity={0.3} />
-        <text x={20} y={26} textAnchor="middle" fontSize={9} fontWeight={700} className="fill-muted-foreground">
+        <polygon
+          points="20,35 16.5,20 23.5,20"
+          fill="currentColor"
+          opacity={0.3}
+        />
+        <text
+          x={20}
+          y={26}
+          textAnchor="middle"
+          fontSize={9}
+          fontWeight={700}
+          className="fill-muted-foreground"
+        >
           N
         </text>
       </svg>

@@ -491,7 +491,7 @@ function createBuildingLabel(building: Building, cx: number, height: number, cz:
   box.appendChild(title)
   box.appendChild(sub)
   const obj = new CSS2DObject(box)
-  obj.position.set(cx, height + 30, -cz)
+  obj.position.set(cx, height + 4, -cz)
   return obj
 }
 
@@ -503,7 +503,7 @@ function createGateLabel(gate: Gate) {
     "font-size:11px;font-weight:700;font-family:var(--font-sans),sans-serif;"
   box.textContent = gate.name
   const obj = new CSS2DObject(box)
-  obj.position.set(gate.position.x, 62, -gate.position.z)
+  obj.position.set(gate.position.x, 46, -gate.position.z)
   return obj
 }
 
