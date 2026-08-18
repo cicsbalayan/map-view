@@ -30,6 +30,29 @@ const OVERVIEW_DIST = OVERVIEW_POS.distanceTo(WORLD_CENTER)
 const MIN_DIST = 140
 const MAX_DIST = 4200
 
+const MOBILE_QUERY = "(max-width: 1279.98px)"
+
+function useIsMobile() {
+  const [mobile, setMobile] = React.useState(() =>
+    typeof window !== "undefined" ? matchMedia(MOBILE_QUERY).matches : false
+  )
+  React.useEffect(() => {
+    const mql = matchMedia(MOBILE_QUERY)
+    const fn = (e: MediaQueryListEvent) => setMobile(e.matches)
+    mql.addEventListener("change", fn)
+    setMobile(mql.matches)
+    return () => mql.removeEventListener("change", fn)
+  }, [])
+  return mobile
+}
+
+const MOBILE_OVERVIEW_POS = new THREE.Vector3(
+  WORLD_WIDTH / 2,
+  2200,
+  -WORLD_DEPTH / 2 + 50
+)
+const MOBILE_OVERVIEW_DIST = MOBILE_OVERVIEW_POS.distanceTo(WORLD_CENTER)
+
 const HIGHLIGHT_INTENSITY = 0.55
 const NORMAL_INTENSITY = 0.08
 
@@ -66,6 +89,8 @@ export const CampusMap = React.forwardRef<CampusMapHandle, CampusMapProps>(
       start: number
       duration: number
     } | null>(null)
+
+    const isMobile = useIsMobile()
 
     const [zoom, setZoom] = React.useState(100)
     const [legendOpen, setLegendOpen] = React.useState(true)
@@ -178,9 +203,13 @@ export const CampusMap = React.forwardRef<CampusMapHandle, CampusMapProps>(
       () => ({
         flyTo,
         focus,
-        resetView: () => flyToTarget(WORLD_CENTER, OVERVIEW_DIST),
+        resetView: () =>
+          flyToTarget(
+            WORLD_CENTER,
+            isMobile ? MOBILE_OVERVIEW_DIST : OVERVIEW_DIST
+          ),
       }),
-      [flyTo, focus, flyToTarget]
+      [flyTo, focus, flyToTarget, isMobile]
     )
 
     React.useEffect(() => {
@@ -190,20 +219,21 @@ export const CampusMap = React.forwardRef<CampusMapHandle, CampusMapProps>(
       const campus = buildCampusScene()
       const { scene } = campus
       const camera = new THREE.PerspectiveCamera(45, 1, 1, 12000)
-      camera.position.copy(OVERVIEW_POS)
+      camera.position.copy(isMobile ? MOBILE_OVERVIEW_POS : OVERVIEW_POS)
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
       renderer.domElement.style.position = "absolute"
       renderer.domElement.style.inset = "0"
       renderer.shadowMap.enabled = true
-      renderer.shadowMap.type = THREE.PCFSoftShadowMap
+      renderer.shadowMap.type = THREE.PCFShadowMap
       container.appendChild(renderer.domElement)
 
       const css2d = new CSS2DRenderer()
       css2d.domElement.style.position = "absolute"
       css2d.domElement.style.inset = "0"
       css2d.domElement.style.pointerEvents = "none"
+      if (isMobile) css2d.domElement.style.display = "none"
       container.appendChild(css2d.domElement)
 
       const controls = new OrbitControls(camera, renderer.domElement)
@@ -330,7 +360,14 @@ export const CampusMap = React.forwardRef<CampusMapHandle, CampusMapProps>(
           container.removeChild(css2d.domElement)
         }
       }
-    }, [applyHighlight, flyToBuilding, flyToGate, onSelect])
+    }, [applyHighlight, flyToBuilding, flyToGate, isMobile, onSelect])
+
+    React.useEffect(() => {
+      const css2d = css2dRef.current
+      if (css2d) {
+        css2d.domElement.style.display = isMobile ? "none" : ""
+      }
+    }, [isMobile])
 
     React.useEffect(() => {
       applyHighlight(selected)
@@ -481,7 +518,12 @@ export const CampusMap = React.forwardRef<CampusMapHandle, CampusMapProps>(
             size="icon-sm"
             variant="outline"
             aria-label="Reset view"
-            onClick={() => flyToTarget(WORLD_CENTER, OVERVIEW_DIST)}
+            onClick={() =>
+              flyToTarget(
+                WORLD_CENTER,
+                isMobile ? MOBILE_OVERVIEW_DIST : OVERVIEW_DIST
+              )
+            }
           >
             <Locate />
           </Button>
