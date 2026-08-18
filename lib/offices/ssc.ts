@@ -23,25 +23,25 @@ export const SSC_OFFICES: Office[] = [
     ],
   },
   {
-    id: "ssc-room-406",
-    name: "SSC room 406",
-    shortName: "406",
+    id: "ssc-room-206",
+    name: "SSC room 206",
+    shortName: "206",
     room: "2F",
     guides: [
       {
-        id: "ssc-room-406-guide",
+        id: "ssc-room-206-guide",
         title: "Classroom",
         content: "A classroom used for lectures and classes.",
       },
     ],
     notes: [
       {
-        id: "ssc-room-406-note",
+        id: "ssc-room-206-note",
         content: "Keep the room clean and return chairs after use.",
         color: "yellow",
       },
       {
-        id: "ssc-room-406-wind",
+        id: "ssc-room-206-wind",
         content:
           "Turn off electronic devices like electric fans and the TV. Keep the windows shut and secure the door with a stopper, since the winds here are strong and can destroy the windows.",
         color: "yellow",
@@ -49,25 +49,25 @@ export const SSC_OFFICES: Office[] = [
     ],
   },
   {
-    id: "ssc-room-407",
-    name: "SSC room 407",
-    shortName: "407",
+    id: "ssc-room-207",
+    name: "SSC room 207",
+    shortName: "207",
     room: "2F",
     guides: [
       {
-        id: "ssc-room-407-guide",
+        id: "ssc-room-207-guide",
         title: "Classroom",
         content: "A classroom used for lectures and classes.",
       },
     ],
     notes: [
       {
-        id: "ssc-room-407-note",
+        id: "ssc-room-207-note",
         content: "Keep the room clean and return chairs after use.",
         color: "yellow",
       },
       {
-        id: "ssc-room-407-wind",
+        id: "ssc-room-207-wind",
         content:
           "Turn off electronic devices like electric fans and the TV. Keep the windows shut and secure the door with a stopper, since the winds here are strong and can destroy the windows.",
         color: "yellow",
@@ -75,25 +75,25 @@ export const SSC_OFFICES: Office[] = [
     ],
   },
   {
-    id: "ssc-room-408",
-    name: "SSC room 408",
-    shortName: "408",
+    id: "ssc-room-208",
+    name: "SSC room 208",
+    shortName: "208",
     room: "2F",
     guides: [
       {
-        id: "ssc-room-408-guide",
+        id: "ssc-room-208-guide",
         title: "Classroom",
         content: "A classroom used for lectures and classes.",
       },
     ],
     notes: [
       {
-        id: "ssc-room-408-note",
+        id: "ssc-room-208-note",
         content: "Keep the room clean and return chairs after use.",
         color: "yellow",
       },
       {
-        id: "ssc-room-408-wind",
+        id: "ssc-room-208-wind",
         content:
           "Turn off electronic devices like electric fans and the TV. Keep the windows shut and secure the door with a stopper, since the winds here are strong and can destroy the windows.",
         color: "yellow",
@@ -101,25 +101,25 @@ export const SSC_OFFICES: Office[] = [
     ],
   },
   {
-    id: "ssc-room-409",
-    name: "SSC room 409",
-    shortName: "409",
+    id: "ssc-room-209",
+    name: "SSC room 209",
+    shortName: "209",
     room: "2F",
     guides: [
       {
-        id: "ssc-room-409-guide",
+        id: "ssc-room-209-guide",
         title: "Classroom",
         content: "A classroom used for lectures and classes.",
       },
     ],
     notes: [
       {
-        id: "ssc-room-409-note",
+        id: "ssc-room-209-note",
         content: "Keep the room clean and return chairs after use.",
         color: "yellow",
       },
       {
-        id: "ssc-room-409-wind",
+        id: "ssc-room-209-wind",
         content:
           "Turn off electronic devices like electric fans and the TV. Keep the windows shut and secure the door with a stopper, since the winds here are strong and can destroy the windows.",
         color: "yellow",
@@ -127,25 +127,25 @@ export const SSC_OFFICES: Office[] = [
     ],
   },
   {
-    id: "ssc-room-410",
-    name: "SSC room 410",
-    shortName: "410",
+    id: "ssc-room-210",
+    name: "SSC room 210",
+    shortName: "210",
     room: "2F",
     guides: [
       {
-        id: "ssc-room-410-guide",
+        id: "ssc-room-210-guide",
         title: "Classroom",
         content: "A classroom used for lectures and classes.",
       },
     ],
     notes: [
       {
-        id: "ssc-room-410-note",
+        id: "ssc-room-210-note",
         content: "Keep the room clean and return chairs after use.",
         color: "yellow",
       },
       {
-        id: "ssc-room-410-wind",
+        id: "ssc-room-210-wind",
         content:
           "Turn off electronic devices like electric fans and the TV. Keep the windows shut and secure the door with a stopper, since the winds here are strong and can destroy the windows.",
         color: "yellow",
@@ -174,25 +174,25 @@ export const SSC_OFFICES: Office[] = [
     ],
   },
   {
-    id: "ssc-room-401",
-    name: "SSC room 401",
-    shortName: "401",
+    id: "ssc-room-201",
+    name: "SSC room 201",
+    shortName: "201",
     room: "2F",
     guides: [
       {
-        id: "ssc-room-401-guide",
+        id: "ssc-room-201-guide",
         title: "Classroom",
         content: "A classroom used for lectures and classes.",
       },
     ],
     notes: [
       {
-        id: "ssc-room-401-note",
+        id: "ssc-room-201-note",
         content: "Keep the room clean and return chairs after use.",
         color: "yellow",
       },
       {
-        id: "ssc-room-401-wind",
+        id: "ssc-room-201-wind",
         content:
           "Turn off electronic devices like electric fans and the TV. Keep the windows shut and secure the door with a stopper, since the winds here are strong and can destroy the windows.",
         color: "yellow",
@@ -200,25 +200,25 @@ export const SSC_OFFICES: Office[] = [
     ],
   },
   {
-    id: "ssc-room-402",
-    name: "SSC room 402",
-    shortName: "402",
+    id: "ssc-room-202",
+    name: "SSC room 202",
+    shortName: "202",
     room: "2F",
     guides: [
       {
-        id: "ssc-room-402-guide",
+        id: "ssc-room-202-guide",
         title: "Classroom",
         content: "A classroom used for lectures and classes.",
       },
     ],
     notes: [
       {
-        id: "ssc-room-402-note",
+        id: "ssc-room-202-note",
         content: "Keep the room clean and return chairs after use.",
         color: "yellow",
       },
       {
-        id: "ssc-room-402-wind",
+        id: "ssc-room-202-wind",
         content:
           "Turn off electronic devices like electric fans and the TV. Keep the windows shut and secure the door with a stopper, since the winds here are strong and can destroy the windows.",
         color: "yellow",
@@ -226,25 +226,25 @@ export const SSC_OFFICES: Office[] = [
     ],
   },
   {
-    id: "ssc-room-403",
-    name: "SSC room 403",
-    shortName: "403",
+    id: "ssc-room-203",
+    name: "SSC room 203",
+    shortName: "203",
     room: "2F",
     guides: [
       {
-        id: "ssc-room-403-guide",
+        id: "ssc-room-203-guide",
         title: "Classroom",
         content: "A classroom used for lectures and classes.",
       },
     ],
     notes: [
       {
-        id: "ssc-room-403-note",
+        id: "ssc-room-203-note",
         content: "Keep the room clean and return chairs after use.",
         color: "yellow",
       },
       {
-        id: "ssc-room-403-wind",
+        id: "ssc-room-203-wind",
         content:
           "Turn off electronic devices like electric fans and the TV. Keep the windows shut and secure the door with a stopper, since the winds here are strong and can destroy the windows.",
         color: "yellow",
@@ -252,25 +252,25 @@ export const SSC_OFFICES: Office[] = [
     ],
   },
   {
-    id: "ssc-room-404",
-    name: "SSC room 404",
-    shortName: "404",
+    id: "ssc-room-204",
+    name: "SSC room 204",
+    shortName: "204",
     room: "2F",
     guides: [
       {
-        id: "ssc-room-404-guide",
+        id: "ssc-room-204-guide",
         title: "Classroom",
         content: "A classroom used for lectures and classes.",
       },
     ],
     notes: [
       {
-        id: "ssc-room-404-note",
+        id: "ssc-room-204-note",
         content: "Keep the room clean and return chairs after use.",
         color: "yellow",
       },
       {
-        id: "ssc-room-404-wind",
+        id: "ssc-room-204-wind",
         content:
           "Turn off electronic devices like electric fans and the TV. Keep the windows shut and secure the door with a stopper, since the winds here are strong and can destroy the windows.",
         color: "yellow",
@@ -278,25 +278,25 @@ export const SSC_OFFICES: Office[] = [
     ],
   },
   {
-    id: "ssc-room-405",
-    name: "SSC room 405",
-    shortName: "405",
+    id: "ssc-room-205",
+    name: "SSC room 205",
+    shortName: "205",
     room: "2F",
     guides: [
       {
-        id: "ssc-room-405-guide",
+        id: "ssc-room-205-guide",
         title: "Classroom",
         content: "A classroom used for lectures and classes.",
       },
     ],
     notes: [
       {
-        id: "ssc-room-405-note",
+        id: "ssc-room-205-note",
         content: "Keep the room clean and return chairs after use.",
         color: "yellow",
       },
       {
-        id: "ssc-room-405-wind",
+        id: "ssc-room-205-wind",
         content:
           "Turn off electronic devices like electric fans and the TV. Keep the windows shut and secure the door with a stopper, since the winds here are strong and can destroy the windows.",
         color: "yellow",

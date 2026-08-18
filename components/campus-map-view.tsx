@@ -87,7 +87,10 @@ export function CampusMapView() {
           <OfficePanel
             selection={selection}
             store={store}
-            onClose={() => setSelection(null)}
+            onClose={() => {
+              setSelection(null)
+              mapRef.current?.resetView()
+            }}
           />
         )}
       </main>

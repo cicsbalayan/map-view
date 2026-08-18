@@ -241,7 +241,7 @@ export const CampusMap = React.forwardRef<CampusMapHandle, CampusMapProps>(
       controls.enableDamping = true
       controls.dampingFactor = 0.08
       controls.minDistance = MIN_DIST
-      controls.maxDistance = MAX_DIST
+      controls.maxDistance = isMobile ? MOBILE_OVERVIEW_DIST : OVERVIEW_DIST
       controls.maxPolarAngle = Math.PI / 2.35
 
       campusRef.current = campus

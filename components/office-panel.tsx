@@ -120,11 +120,23 @@ export function OfficePanel({ selection, store, onClose }: OfficePanelProps) {
             onSelectOffice={setSelectedOfficeId}
           />
         ) : (
-          <div className="rounded-lg border bg-muted/30 p-3 text-sm text-muted-foreground">
-            <p>
-              This is one of the campus entrance gates. Click a building on the
-              map to view its 2D floor plan, guides, and notes.
-            </p>
+          <div className="space-y-4">
+            <div className="rounded-lg border bg-muted/30 p-3 text-sm text-muted-foreground">
+              <p>
+                This is one of the campus entrance gates. Click a building on the
+                map to view its 2D floor plan, guides, and notes.
+              </p>
+            </div>
+            {gate.notes && gate.notes.length > 0 && (
+              <section className="space-y-2">
+                <h4 className="flex items-center gap-1.5 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+                  <StickyNote className="size-3.5" /> Notes ({gate.notes.length})
+                </h4>
+                {gate.notes.map((note) => (
+                  <NoteCard key={note.id} note={note} />
+                ))}
+              </section>
+            )}
           </div>
         )}
       </div>

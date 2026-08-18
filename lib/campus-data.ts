@@ -103,12 +103,64 @@ export const GATES: Gate[] = [
     name: "Gate 1",
     description: "Main entrance on the north wall, upper right of the campus.",
     position: { x: 60, z: 0 },
+    notes: [
+      {
+        id: "gate-1-id",
+        content:
+          "Always wear your Student ID visibly at all times; you may be asked to present it upon entry. If your Student ID is not available, show your student portal or COR instead.",
+        color: "yellow",
+      },
+      {
+        id: "gate-1-uniform",
+        content:
+          "Follow proper uniform rules: Wear your prescribed white top/school uniform, proper pants, and closed shoes. Slippers, sandals, ripped jeans, and improper attire are NOT ALLOWED.",
+        color: "yellow",
+      },
+      {
+        id: "gate-1-inspection",
+        content:
+          "Prepare your belongings for inspection if requested by security personnel.",
+        color: "yellow",
+      },
+      {
+        id: "gate-1-visitors",
+        content:
+          "Visitors should log in at the guardhouse and get a visitor pass before entering the campus.",
+        color: "blue",
+      },
+    ],
   },
   {
     id: "gate-2",
     name: "Gate 2",
     description: "Secondary entrance on the south wall, below the canteen.",
     position: { x: 1000, z: 530 },
+    notes: [
+      {
+        id: "gate-2-id",
+        content:
+          "Always wear your Student ID visibly at all times; you may be asked to present it upon entry. If your Student ID is not available, show your student portal or COR instead.",
+        color: "yellow",
+      },
+      {
+        id: "gate-2-uniform",
+        content:
+          "Follow proper uniform rules: Wear your prescribed white top/school uniform, proper pants, and closed shoes. Slippers, sandals, ripped jeans, and improper attire are NOT ALLOWED.",
+        color: "yellow",
+      },
+      {
+        id: "gate-2-inspection",
+        content:
+          "Prepare your belongings for inspection if requested by security personnel.",
+        color: "yellow",
+      },
+      {
+        id: "gate-2-visitors",
+        content:
+          "Visitors should log in at the guardhouse and get a visitor pass before entering the campus.",
+        color: "blue",
+      },
+    ],
   },
 ]
 

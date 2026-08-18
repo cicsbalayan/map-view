@@ -44,6 +44,7 @@ export interface Gate {
   name: string
   description: string
   position: Point3
+  notes?: Note[]
 }
 
 export interface GuardHouse {
