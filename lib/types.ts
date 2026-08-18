@@ -37,6 +37,7 @@ export interface Building {
   mapRows?: number
   wallColor?: string
   roofColor?: string
+  notes?: Note[]
 }
 
 export interface Gate {

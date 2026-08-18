@@ -103,6 +103,18 @@ export const CANTEEN_OFFICES: Office[] = [
           "Serves as the ROTC office where most of the cadet officers and ROTC items, including uniforms and equipment, are kept.",
         color: "yellow",
       },
+      {
+        id: "canteen-rotc-dmst",
+        content:
+          "Also known as DMST (Department of Military Science and Tactics).",
+        color: "blue",
+      },
+      {
+        id: "canteen-rotc-restricted",
+        content:
+          "Prohibited for regular students. Must be accompanied by a ROTC officer if there is any agenda inside the DMST.",
+        color: "pink",
+      },
     ],
   },
 ]

@@ -94,6 +94,38 @@ export const BUILDINGS: Building[] = [
     foot: { x: 50, z: 175, width: 60, depth: 140 },
     height: 20,
     floors: 2,
+    notes: [
+      {
+        id: "gso-barracks-prohibited",
+        content:
+          "Students are strictly prohibited from entering the GSO Barracks and dormitory areas without explicit permission and an authorized security escort.",
+        color: "pink",
+      },
+      {
+        id: "gso-barracks-quiet",
+        content:
+          "Please maintain a quiet atmosphere and keep noise levels low when passing by the building to avoid disturbing off-duty campus guards and maintenance staff who are resting.",
+        color: "yellow",
+      },
+      {
+        id: "gso-barracks-loiter",
+        content:
+          "Do not loiter, hang out, or leave personal belongings near the barracks entrance, walkways, or equipment storage areas.",
+        color: "yellow",
+      },
+      {
+        id: "gso-barracks-respect",
+        content:
+          "Always treat the hardworking GSO and security personnel with utmost respect and courtesy whenever you interact with them around the campus grounds.",
+        color: "green",
+      },
+      {
+        id: "gso-barracks-assistance",
+        content:
+          "If you need assistance, report lost items, or require campus security aid, approach the official security guard post rather than entering the living quarters directly.",
+        color: "blue",
+      },
+    ],
   },
 ]
 

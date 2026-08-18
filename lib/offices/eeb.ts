@@ -162,9 +162,45 @@ export const EEB_OFFICES: Office[] = [
     ],
     notes: [
       {
-        id: "eeb-library-note",
-        content: "Keep quiet and return borrowed books on time.",
+        id: "eeb-library-hours",
+        content: "The library is open from Monday to Thursday only.",
         color: "blue",
+      },
+      {
+        id: "eeb-library-attendance",
+        content:
+          "Entering students must enter their SR-Code on the computer beside the door for attendance/record purposes.",
+        color: "yellow",
+      },
+      {
+        id: "eeb-library-bags",
+        content:
+          "Place your bags and other belongings on the designated shelves and make sure they are properly arranged.",
+        color: "yellow",
+      },
+      {
+        id: "eeb-library-borrow",
+        content:
+          "If you need to borrow a book or tablet, ask assistance from the assigned librarian.",
+        color: "yellow",
+      },
+      {
+        id: "eeb-library-take-home",
+        content:
+          "If you need to take a book home, make sure to log the borrowing transaction for record purposes and leave your Student ID with the librarian.",
+        color: "yellow",
+      },
+      {
+        id: "eeb-library-silence",
+        content:
+          "Keep your voice low and maintain silence inside the library to avoid disturbing other students.",
+        color: "yellow",
+      },
+      {
+        id: "eeb-library-care",
+        content:
+          "Always keep the library clean, organized, and treat all books, tablets, and other facilities with care.",
+        color: "green",
       },
     ],
   },

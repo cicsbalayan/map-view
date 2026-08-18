@@ -172,9 +172,20 @@ function BuildingContent({
       </div>
 
       {offices.length === 0 ? (
-        <p className="rounded-lg border border-dashed p-3 text-center text-xs text-muted-foreground">
-          No offices listed for this building.
-        </p>
+        building.notes && building.notes.length > 0 ? (
+          <section className="space-y-2">
+            <h4 className="flex items-center gap-1.5 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+              <StickyNote className="size-3.5" /> Notes ({building.notes.length})
+            </h4>
+            {building.notes.map((note) => (
+              <NoteCard key={note.id} note={note} />
+            ))}
+          </section>
+        ) : (
+          <p className="rounded-lg border border-dashed p-3 text-center text-xs text-muted-foreground">
+            No offices listed for this building.
+          </p>
+        )
       ) : (
         <BuildingMap
           key={building.id}
