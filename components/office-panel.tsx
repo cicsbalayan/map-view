@@ -127,7 +127,7 @@ export function OfficePanel({ selection, store, onClose }: OfficePanelProps) {
                 map to view its 2D floor plan, guides, and notes.
               </p>
             </div>
-            {gate.notes && gate.notes.length > 0 && (
+            {gate?.notes && gate.notes.length > 0 && (
               <section className="space-y-2">
                 <h4 className="flex items-center gap-1.5 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
                   <StickyNote className="size-3.5" /> Notes ({gate.notes.length})
